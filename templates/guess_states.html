@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/US-states-game/styles.css') }}">
+    <title>U.S. States Game</title>
+</head>
+<body>
+    <div class="container">
+        <h1 id="title">Guess the State</h1>
+        <input type="text" id="stateInput" placeholder="Type a state name">
+        <button id="submitBtn">Submit</button>
+        <p id="result"></p>
+        <canvas id="usMap" width="725" height="491"></canvas>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='assets/US-states-game/game.js') }}"></script>
+</body>
+</html>
