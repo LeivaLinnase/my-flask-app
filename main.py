@@ -2,9 +2,14 @@ from flask import Flask, render_template, request, redirect
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from dotenv import load_dotenv
 import os
 
+load_dotenv()
+secret_key = os.getenv('SECRET_KEY')
+
 app = Flask(__name__)
+app.config['SECRET_KEY'] = secret_key
 @app.route("/", methods=['GET', 'POST'])
 def home():
     error = None
@@ -54,4 +59,4 @@ def guess_states():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
