@@ -43,6 +43,12 @@ img.game-image {
     border-radius: 10px;
     width: 100%
 }
+.datum {
+    color: #606060;
+    float: right;
+    right: 10px;
+    bottom: 10px;
+}
 
 table {
         width: 100%;
