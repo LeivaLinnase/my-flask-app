@@ -17,6 +17,41 @@ ul.outer-list ul {
 .outer-list h4 {
     margin: 0;
 }
+
+
+/* lolololol
+
+/* lololololo
+
+
+/* Style the container that holds everything inside the <td> */
+td {
+    position: relative;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Make the text container wrap around the image */
+p {
+    text-align: justify; /* To spread text evenly and allow for wrapping around */
+}
+
+/* Style for the image and button */
+.game-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.primary {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+}
+
+
 .flex-container {
   display: flex;
   justify-content: space-between;
