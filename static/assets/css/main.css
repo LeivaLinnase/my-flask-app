@@ -32,10 +32,7 @@ td {
     box-sizing: border-box;
 }
 
-/* Make the text container wrap around the image */
-p {
-    text-align: justify; /* To spread text evenly and allow for wrapping around */
-}
+
 
 /* Style for the image and button */
 .game-image {
