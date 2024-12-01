@@ -90,65 +90,69 @@
 							<article id="work">
 								<h2 class="major">Portfolio</h2>
 								<table width="100%">
-									<tr>
-										<td width="50%" style="vertical-align: top; text-align: center;">
-											<img class="game-image" src="static/images/dashboard.png">												<button class="primary" onclick="window.open('https://public.tableau.com/views/SalesDashboard_17297683316920/SalesDashboard?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link', '_blank');">OPEN</button>
-											</a>
-										</td>
-										<td>
-											<h4>Tableau Dashboard</h4>
-											<p>
+									<tr width="100%">
+										<td class="parent-td">
+											<div class="text-div">
+												<h4>Tableau Dashboard</h4>
+												<p>
 												This project marks my first full-scale Tableau endeavor, featuring two comprehensive dashboards: a Sales Dashboard and a Customers Dashboard.
 												The primary goal was to explore and practice the diverse functionality offered by Tableau, from data visualization to interactivity.
 												The dashboards are equipped with custom navigation buttons and a wide range of filters,
 												allowing users to tailor their views and gain insights quickly. Through this project,
 												I’ve developed a deeper appreciation for Tableau's power and versatility, refining my skills in creating
 												interactive and user-friendly dashboards.<br><i class="datum">November 2024</i>
-											</p>
-										</td>
-									</tr>
-									<tr>
-										<td width="50%" style="vertical-align: top; text-align: center;">
-											<iframe src="static/assets/BB_case_study.pdf#toolbar=0"></iframe>
-											<button onclick="window.open('static/assets/BB_case_study.pdf', '_blank');">Preview PDF</button>
-										</td>
-										<td width="50%" style="vertical-align: top; max-height: 300px;">
-											<h4>
-												Bellabeat - Smart Device Usage
-											</h4>
-											<p>
-												This case study was a capstone project of 'Google Data Analytics Certificate'.
-												Bellabeat is a high-tech manufacturer of health-focused products for women.
-												The objective was to give recommendations to the company by analysing
-												open data about smart device usage, collected by competitive manufacturers. In
-												this case study, I demonstrate my ability to use and combine tools like Python,
-												SQL and Google Sheets to gain valuable insights in order to provide top-quality
-												recommendations.<br><i class="datum">October 2024</i>
-											</p>
-										</td>
-									</tr>
-									<tr>
-										<td width="50%" style="vertical-align: top; text-align: center;">
-											<img class="game-image" src="static/assets/US-states-game/blank_states_img.jpeg">
-											<a href="{{ url_for('guess_states') }}" target="_blank">
-												<button class="primary">GAME</button>
+												</p>
+											</div>
+											<div class="image-div" width="50%" style="vertical-align: bottom; text-align: center;">
+												<img class="game-image" src="static/images/dashboard.png">
+												<button class="primary" onclick="window.open('https://public.tableau.com/views/SalesDashboard_17297683316920/SalesDashboard?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link', '_blank');">OPEN</button>
+											</div>
 											</a>
 										</td>
-										<td>
-											<h4>Guess the U.S States</h4>
-											<p>
-												I created this guessing game during my Python Bootcamp, which was one of my first
-												experiences working with the pandas library and CSV files. I implemented the Python code
-												into a web UI, allowing users to try it out. The game begins with a blank map of the
-												United States and users must type a state name into the submit box. If user
-												correctly identifies a state, it will be displayed at its correct location on the map.
-												How many states can you guess?<br><i class="datum">May 2024</i>
-											</p>
+									</tr>
+									<tr width="100%">
+										<td class="parent-td">
+											<div class="text-div">
+												<h4>Bellabeat - Smart Device Usage</h4>
+												<p>
+													This case study was a capstone project of 'Google Data Analytics Certificate'.
+													Bellabeat is a high-tech manufacturer of health-focused products for women.
+													The objective was to give recommendations to the company by analysing
+													open data about smart device usage, collected by competitive manufacturers. In
+													this case study, I demonstrate my ability to use and combine tools like Python,
+													SQL and Google Sheets to gain valuable insights in order to provide top-quality
+													recommendations.<br><i class="datum">October 2024</i>
+												</p>
+											</div>
+											<div class="image-div" width="50%" style="vertical-align: bottom; text-align: center;">
+												<iframe src="static/assets/BB_case_study.pdf#toolbar=0" height="300px"></iframe>
+												<button onclick="window.open('static/assets/BB_case_study.pdf', '_blank');">Preview PDF</button>
+											</div>
+										</td>
+									</tr>
+									<tr width="100%">
+										<td class="parent-td">
+											<div class="text-div">
+												<h4>Guess the U.S States</h4>
+												<p>
+													I created this guessing game during my Python Bootcamp, which was one of my first
+													experiences working with the pandas library and CSV files. I implemented the Python code
+													into a web UI, allowing users to try it out. The game begins with a blank map of the
+													United States and users must type a state name into the submit box. If user
+													correctly identifies a state, it will be displayed at its correct location on the map.
+													How many states can you guess?<br><i class="datum">May 2024</i>
+												</p>
+											</div>
+											<div class="image-div" width="50%" style="vertical-align: bottom; text-align: center;">
+												<img class="game-image" src="static/assets/US-states-game/blank_states_img.jpeg">
+												<a href="{{ url_for('guess_states') }}" target="_blank">
+												<button class="primary">GAME</button>
+												</a>
+											</div>
 										</td>
 									</tr>
 								</table>
 							</article>
-
 						<!-- About -->
 							<article id="about">
 								<h2 class="major">About</h2>
