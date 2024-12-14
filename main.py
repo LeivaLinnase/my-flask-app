@@ -57,6 +57,10 @@ def send_email(name, email, message):
 def guess_states():
     return render_template("guess_states.html")
 
+@app.route('/weather')
+def weather():
+    return render_template("weather.html")
+
 
 if __name__ == '__main__':
     app.run()
