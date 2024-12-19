@@ -44,7 +44,7 @@ td {
 .flex-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: top;
 }
 img.badges {
     width: 270px;
@@ -156,8 +156,12 @@ ul.exp ul {
     list-style-type: disc;
 }
 .dark li {
-    color: #BFBFBF;
-    font-weight: bold;
+    margin-bottom: 25px;
+    color: #F0E68C;
+}
+.dark h4 {
+    color: #919293;
+    text-decoration: underline;
 }
 h4  {
     margin: 0;
