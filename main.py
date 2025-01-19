@@ -10,6 +10,8 @@ secret_key = os.getenv('SECRET_KEY')
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = secret_key
+
+
 @app.route("/", methods=['GET', 'POST'])
 def home():
     error = None
@@ -56,10 +58,6 @@ def send_email(name, email, message):
 @app.route("/guess_states")
 def guess_states():
     return render_template("guess_states.html")
-
-@app.route('/weather')
-def weather():
-    return render_template("weather.html")
 
 
 if __name__ == '__main__':
