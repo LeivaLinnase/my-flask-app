@@ -295,46 +295,39 @@
 							<article id="contact">
 								<h2 class="major">Contact</h2>
 
-								{% if message_sent %}
-								<!-- SUCCESS MESSAGE ONLY -->
-								<div id="successMessage" class="alert alert-success" style="text-align:center; padding:20px;">
-									✅ Your message was sent successfully! You will be redirected shortly...
-								</div>
-
-								<script>
-								// After 5 seconds, redirect to home page
-								setTimeout(function() {
-									window.location.href = "/";
-								}, 5000);
-								</script>
-
-								{% else %}
-								<!-- FORM (only show when message NOT sent) -->
-								{% if error %}
-								<div class="alert alert-danger">{{ error }}</div>
-								{% endif %}
-
-								<form method="post" action="/">
-									<div class="fields">
-										<div class="field half">
-											<label for="name">Name</label>
-											<input type="text" name="name" id="name" required/>
+								<div id="contactContainer" style="position: relative;">
+									<!-- Form -->
+									<form id="contactForm">
+										<div class="fields">
+											<div class="field half">
+												<label for="name">Name</label>
+												<input type="text" name="name" id="name" required/>
+											</div>
+											<div class="field half">
+												<label for="email">Email</label>
+												<input type="text" name="email" id="email" required/>
+											</div>
+											<div class="field">
+												<label for="message">Message</label>
+												<textarea name="message" id="message" rows="4" required></textarea>
+											</div>
 										</div>
-										<div class="field half">
-											<label for="email">Email</label>
-											<input type="text" name="email" id="email" required/>
-										</div>
-										<div class="field">
-											<label for="message">Message</label>
-											<textarea name="message" id="message" rows="4" required></textarea>
-										</div>
+										<ul class="actions">
+											<li><input type="submit" value="Send Message" class="primary" /></li>
+											<li><input type="reset" value="Reset" /></li>
+										</ul>
+									</form>
+
+									<!-- Success message (hidden by default) -->
+									<div id="successMessage" class="alert alert-success"
+										 style="display:none; text-align:center; padding:20px;">
+										✅ Your message was sent successfully! You will be redirected shortly...
 									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Send Message" class="primary" /></li>
-										<li><input type="reset" value="Reset" /></li>
-									</ul>
-								</form>
-								{% endif %}
+
+									<!-- Error message (hidden by default) -->
+									<div id="errorMessage" class="alert alert-danger"
+										 style="display:none; text-align:center; padding:20px;"></div>
+								</div>
 
 								<ul class="icons">
 									<li><a href="https://www.tiktok.com/@leivalinnase?_t=8qaHTme8QiH&_r=1" class="icon brands fa-tiktok" target="_blank"><span class="label">TikTok</span></a></li>
@@ -342,6 +335,43 @@
 									<li><a href="https://github.com/LeivaLinnase" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 								</ul>
 							</article>
+
+							<script>
+							document.getElementById("contactForm").addEventListener("submit", async function(e) {
+								e.preventDefault(); // prevent normal form submission
+
+								const formData = new FormData(this);
+								const data = Object.fromEntries(formData.entries());
+
+								try {
+									const response = await fetch("/", {
+										method: "POST",
+										headers: { "Content-Type": "application/json" },
+										body: JSON.stringify(data)
+									});
+
+									const result = await response.json();
+
+									if (result.status === "success") {
+										// Hide the form
+										document.getElementById("contactForm").style.display = "none";
+										// Show success message
+										document.getElementById("successMessage").style.display = "block";
+										// Redirect after 5 seconds
+										setTimeout(() => { window.location.href = "/"; }, 5000);
+									} else {
+										// Show error message
+										document.getElementById("errorMessage").innerText = result.message;
+										document.getElementById("errorMessage").style.display = "block";
+									}
+
+								} catch (err) {
+									document.getElementById("errorMessage").innerText = "Could not send message. Try again later.";
+									document.getElementById("errorMessage").style.display = "block";
+								}
+							});
+							</script>
+
 
 						<!-- Elements -->
 							<article id="elements">

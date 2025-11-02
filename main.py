@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, render_template, request, jsonify, flash
 from dotenv import load_dotenv
 import os
 import resend
@@ -14,25 +14,24 @@ resend.api_key = os.getenv("RESEND_API_KEY")
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    if request.method == 'POST':
-        name = request.form.get('name')
-        email = request.form.get('email')
-        message = request.form.get('message')
+    if request.method == "POST":
+        data = request.get_json()
+        name = data.get("name")
+        email = data.get("email")
+        message = data.get("message")
 
         if not (name and email and message):
-            return render_template("index.html", message_sent=False, error="All fields are required.")
+            return jsonify({"status": "error", "message": "All fields are required."})
 
         try:
             send_email(name, email, message)
-            # ✅ Tell template message was sent
-            return render_template("index.html", message_sent=True)
+            return jsonify({"status": "success"})
         except Exception as e:
             print("Send error:", e)
-            return render_template("index.html", message_sent=False, error="Could not send message. Please try later.")
+            return jsonify({"status": "error", "message": "Could not send message. Try again later."})
 
     # GET request
-    return render_template("index.html", message_sent=False)
-
+    return render_template("index.html")
 
 
 def send_email(name, email, message):
