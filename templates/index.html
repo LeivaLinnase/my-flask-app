@@ -319,8 +319,8 @@
 									</form>
 
 									<!-- Success message (hidden by default) -->
-									<div id="successMessage" class="alert alert-success"
-										 style="display:none; text-align:center; padding:20px;">
+									<div id="successMessage"
+										 style="display:none; text-align:center; padding:20px; font-family: inherit; font-size: 1.1em;">
 										✅ Your message was sent successfully! You will be redirected shortly...
 									</div>
 
@@ -329,10 +329,10 @@
 										 style="display:none; text-align:center; padding:20px;"></div>
 								</div>
 
-								<ul class="icons">
+								<ul id="socialIcons" class="icons">
 									<li><a href="https://www.tiktok.com/@leivalinnase?_t=8qaHTme8QiH&_r=1" class="icon brands fa-tiktok" target="_blank"><span class="label">TikTok</span></a></li>
 									<li><a href="https://www.linkedin.com/in/riccardo-kiho-a45056267" class="icon brands fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
-									<li><a href="https://github.com/LeivaLinnase" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="https://github.com/LeivaLinnase" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
 								</ul>
 							</article>
 
@@ -355,6 +355,8 @@
 									if (result.status === "success") {
 										// Hide the form
 										document.getElementById("contactForm").style.display = "none";
+										// Hide social icons
+										document.getElementById("socialIcons").style.display = "none";
 										// Show success message
 										document.getElementById("successMessage").style.display = "block";
 										// Redirect after 5 seconds
@@ -371,6 +373,7 @@
 								}
 							});
 							</script>
+
 
 
 						<!-- Elements -->
