@@ -14,28 +14,25 @@ resend.api_key = os.getenv("RESEND_API_KEY")
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    error = None
-
     if request.method == 'POST':
         name = request.form.get('name')
         email = request.form.get('email')
         message = request.form.get('message')
 
         if not (name and email and message):
-            error = "All fields are required."
-        else:
-            try:
-                send_email(name, email, message)
-                flash("✅ Your message was sent successfully. I will reply as soon as possible!")
-                return render_template("index.html", message_sent=True)
-            except Exception as e:
-                print("Send error:", e)
-                flash("❌ Could not send message. Please try again later.")
+            return render_template("index.html", message_sent=False, error="All fields are required.")
 
-        return render_template("index.html", error=error)
+        try:
+            send_email(name, email, message)
+            # ✅ Tell template message was sent
+            return render_template("index.html", message_sent=True)
+        except Exception as e:
+            print("Send error:", e)
+            return render_template("index.html", message_sent=False, error="Could not send message. Please try later.")
 
-    # ✅ GET request always returns HTML
-    return render_template("index.html", error=error)
+    # GET request
+    return render_template("index.html", message_sent=False)
+
 
 
 def send_email(name, email, message):
