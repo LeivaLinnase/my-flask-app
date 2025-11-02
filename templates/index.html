@@ -294,6 +294,14 @@
 						<!-- Contact -->
 							<article id="contact">
 								<h2 class="major">Contact</h2>
+								{% with messages = get_flashed_messages() %}
+								  {% if messages %}
+									<div class="alert alert-success">
+									  {{ messages[0] }}
+									</div>
+								  {% endif %}
+								{% endwith %}
+
 								<form method="post" action="/">
 									<div class="fields">
 										<div class="field half">
@@ -343,13 +351,13 @@
 									<h4>Preformatted</h4>
 									<pre><code>i = 0;
 
-while (!deck.isInOrder()) {
-    print 'Iteration ' + i;
-    deck.shuffle();
-    i++;
-}
+										while (!deck.isInOrder()) {
+											print 'Iteration ' + i;
+											deck.shuffle();
+											i++;
+										}
 
-print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+										print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 								</section>
 
 								<section>
