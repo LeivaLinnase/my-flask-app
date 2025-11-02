@@ -15,6 +15,7 @@ resend.api_key = os.getenv("RESEND_API_KEY")
 @app.route("/", methods=['GET', 'POST'])
 def home():
     error = None
+
     if request.method == 'POST':
         name = request.form.get('name')
         email = request.form.get('email')
@@ -32,6 +33,9 @@ def home():
                 error = "Could not send message. Please try later."
 
         return render_template("index.html", error=error)
+
+    # ✅ GET request always returns HTML
+    return render_template("index.html", error=error)
 
 
 def send_email(name, email, message):
