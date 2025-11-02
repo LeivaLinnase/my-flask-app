@@ -1,10 +1,7 @@
 from flask import Flask, render_template, request, redirect, flash
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 from dotenv import load_dotenv
 import os
-from resend import Resend
+import resend
 
 load_dotenv()
 secret_key = os.getenv('SECRET_KEY')
@@ -12,7 +9,7 @@ secret_key = os.getenv('SECRET_KEY')
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY") or "dev-key"
 
-resend_client = Resend(os.getenv("RESEND_API_KEY"))
+resend.api_key = os.getenv("RESEND_API_KEY")
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -38,20 +35,21 @@ def home():
 
 
 def send_email(name, email, message):
-    receiver_email = os.getenv("EMAIL_USER")
-    if not receiver_email:
-        raise RuntimeError("EMAIL_USER not configured")
+    receiver = os.getenv("EMAIL_USER")
 
-    subject = f"New Message from {name}"
-    text = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
-
-    return resend_client.emails.send({
-        "from": f"Contact Form <no-reply@{os.getenv('MAIL_DOMAIN','example.com')}>",
-        "to": [receiver_email],
+    payload = {
+        "from": "Contact Form <no-reply@resend.dev>",
+        "to": [receiver],
         "reply_to": email,
-        "subject": subject,
-        "text": text,
-    })
+        "subject": f"New Message from {name}",
+        "text": f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}",
+    }
+
+    try:
+        response = resend.Emails.send(payload)
+        print("Email sent:", response)
+    except Exception as e:
+        print("Resend error:", e)
 
 
 @app.route("/guess_states")
