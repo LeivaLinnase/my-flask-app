@@ -294,10 +294,23 @@
 						<!-- Contact -->
 							<article id="contact">
 								<h2 class="major">Contact</h2>
+								<!-- Success message only after submission -->
+								{% if message_sent %}
+								<div id="successMessage" class="alert alert-success">
+									✅ Your message was sent successfully. You will be redirected shortly...
+								</div>
+								<script>
+								// Auto-hide message and redirect after 5 seconds
+								setTimeout(function() {
+									window.location.href = "/";
+								}, 5000);
+								</script>
+								{% endif %}
+								<!-- Error messages (flash) -->
 								{% with messages = get_flashed_messages() %}
-								  {% if messages %}
-									<div class="alert alert-success">
-									  {{ messages[0] }}
+								  {% if messages and not message_sent %}
+									<div class="alert alert-danger">
+										{{ messages[0] }}
 									</div>
 								  {% endif %}
 								{% endwith %}
@@ -322,13 +335,15 @@
 										<li><input type="reset" value="Reset" /></li>
 									</ul>
 								</form>
+
 								<ul class="icons">
 									<li><a href="https://www.tiktok.com/@leivalinnase?_t=8qaHTme8QiH&_r=1" class="icon brands fa-tiktok" target="_blank"><span class="label">TikTok</span></a></li>
-<!--									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>-->
+							<!--      <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>-->
 									<li><a href="https://www.linkedin.com/in/riccardo-kiho-a45056267" class="icon brands fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
 									<li><a href="https://github.com/LeivaLinnase" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 								</ul>
 							</article>
+
 
 						<!-- Elements -->
 							<article id="elements">

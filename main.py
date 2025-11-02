@@ -27,7 +27,7 @@ def home():
             try:
                 send_email(name, email, message)
                 flash("✅ Your message was sent successfully. I will reply as soon as possible!")
-                return redirect("/#")
+                return render_template("index.html", message_sent=True)
             except Exception as e:
                 print("Send error:", e)
                 flash("❌ Could not send message. Please try again later.")
